@@ -9,6 +9,7 @@ container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
 
 icon.addEventListener('click', () => {
+    window.alert("Clicked!")
     sound.play();
     dictate();
 });
