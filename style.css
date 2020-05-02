@@ -29,6 +29,12 @@ body {
     border-bottom: 1px dotted black;
     margin: 0px !important;
 }
+
+.fa-microphone:before {
+    content: "\f130";
+    cursor: pointer;
+}
+
 .fa {
     color: white;
     background: #1e2440;
