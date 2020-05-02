@@ -8,7 +8,7 @@ let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
 
-icon.addEventListener('touchstart', () => {
+icon.addEventListener('click', () => {
     sound.play();
     dictate();
 });
