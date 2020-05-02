@@ -40,6 +40,10 @@ const dictate = () => {
             if(speechToText.includes('give me the summary of cases in')){
                 getTheSummaryCasesDistrictWise(speechToText);
             }
+            else {
+                debugger;
+                unsupportedText();
+            }
         }
     }
 };
@@ -116,4 +120,13 @@ const getTheWeather = (speech) => {
             utterThis = new SpeechSynthesisUtterance(`the weather condition in ${weather.name} is mostly full of ${weather.weather[0].description} at a temperature of ${weather.main.temp} degrees Celcius`);
             synth.speak(utterThis);
         });
+
+};
+const unsupportedText = () => {
+    debugger;
+  utterCrapList = ["Sorry I don't understand what you are saying. Please try again","Kya bol rha hai be","Could you please read the options carefully before speaking","I won't tell you because I don't know that","What the hell did you just say?"];
+    var randomNumber = Math.floor((Math.random()*5)+1)
+     utterThis = new SpeechSynthesisUtterance(utterCrapList[randomNumber]);
+    synth.speak(utterThis);
+
 };
