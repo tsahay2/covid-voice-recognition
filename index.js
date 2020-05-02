@@ -2,7 +2,7 @@ window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecogn
 const synth = window.speechSynthesis;
 const recognition = new SpeechRecognition();
 
-const icon = document.querySelector('i.fa.fa-microphone')
+const icon = document.querySelector('a.fa.fa-microphone');
 let paragraph = document.createElement('p');
 let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
