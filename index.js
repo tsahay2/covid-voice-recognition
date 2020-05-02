@@ -4,6 +4,7 @@ const recognition = new SpeechRecognition();
 
 const icon = document.querySelector('button.fa.fa-microphone');
 let paragraph = document.createElement('p');
+paragraph.id ='typewriter-paragraph';
 let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
@@ -19,7 +20,7 @@ const dictate = () => {
     recognition.onresult = (event) => {
         const speechToText = event.results[0][0].transcript;
 
-        paragraph.textContent = speechToText;
+    typeWriter(speechToText);
 
         if (event.results[0].isFinal) {
 
@@ -27,21 +28,20 @@ const dictate = () => {
                 speak(getTime);
             }
 
-            if (speechToText.includes('what is today\'s date')) {
+            else if (speechToText.includes('what is today\'s date')) {
                 speak(getDate);
             }
 
-            if (speechToText.includes('what is the weather in')) {
+            else if (speechToText.includes('what is the weather in')) {
                 getTheWeather(speechToText);
             }
-            if(speechToText.includes('what is the total number of cases in')){
+            else if(speechToText.includes('what is the total number of cases in')){
                 getTheCasesDistrictWise(speechToText);
             }
-            if(speechToText.includes('give me the summary of cases in')){
+            else if(speechToText.includes('give me the summary of cases in')){
                 getTheSummaryCasesDistrictWise(speechToText);
             }
             else {
-                debugger;
                 unsupportedText();
             }
         }
@@ -123,10 +123,19 @@ const getTheWeather = (speech) => {
 
 };
 const unsupportedText = () => {
-    debugger;
   utterCrapList = ["Sorry I don't understand what you are saying. Please try again","Kya bol rha hai be","Could you please read the options carefully before speaking","I won't tell you because I don't know that","What the hell did you just say?"];
-    var randomNumber = Math.floor((Math.random()*5)+1)
+    var randomNumber = Math.floor((Math.random()*5)+1);
      utterThis = new SpeechSynthesisUtterance(utterCrapList[randomNumber]);
     synth.speak(utterThis);
 
+};
+
+var i=0;
+function typeWriter(txt) {
+    debugger;
+    if (i < txt.length) {
+        document.getElementById("typewriter-paragraph").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter(txt), 500);
+    }
 };

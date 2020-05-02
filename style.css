@@ -1,10 +1,22 @@
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
 body {
-    background: #1e2440;
+    background: #fff;
     color: #f2efe2;
     font-size: 16px;
     font-family: 'Kaushan Script', cursive;
     font-family: 'Shadows Into Light', cursive;
 }
+
+
+body h1 {
+    font-family: Calibri;
+    text-align: center;
+    margin-top: 40px;
+    color: #000;
+
+}
+
 .container {
     position: relative;
     border: 1px solid #f2efe2;
@@ -15,33 +27,48 @@ body {
     background: #f2efe2;
     padding: 0.2rem 1rem;
     color: #1e2440;
-    overflow: scroll;
+    /*overflow: scroll;*/
     margin-top: 10vh;
 }
 .text-box {
     max-height: 70vh;
-    overflow: scroll;
+    height: 30px;
+    /*overflow: scroll;*/
 }
 .text-box:focus {
     outline: none;
+
 }
 .text-box p {
-    border-bottom: 1px dotted black;
+    /*border-bottom: 1px dotted black;*/
     margin: 0px !important;
 }
 .fa {
     color: white;
-    background: #1e2440;
+    background: blue;
     border-radius: 50%;
     cursor: pointer;
-    margin-top: 1rem;
-    float: right;
-    width: 2rem;
-    height: 2rem;
+    margin: 2% auto;
+    /*float: right;*/
+    width: 10rem;
+    height: 10rem;
     display: flex !important;
     align-items: center;
     justify-content: center;
+    border: 2px black solid;
 }
+
+.fa.fa-microphone{
+    font-size: 50px;
+}
+
+.fa:hover{
+    color: white;
+    border: 2px grey solid;
+    box-shadow: #1e2440;
+}
+
+
 @media (max-width: 768px) {
     .container {
         width: 85vw;
@@ -50,4 +77,33 @@ body {
     .text-box {
         max-height: 55vh;
     }
+
+
+    .line-1{
+        position: relative;
+        top: 50%;
+        width: 24em;
+        margin: 0 auto;
+        border-right: 2px solid rgba(255,255,255,.75);
+        font-size: 180%;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        transform: translateY(-50%);
+    }
+
+    /* Animation */
+    .anim-typewriter{
+        animation: typewriter 4s steps(44) 1s 1 normal both,
+        blinkTextCursor 500ms steps(44) infinite normal;
+    }
+    @keyframes typewriter{
+        from{width: 0;}
+        to{width: 24em;}
+    }
+    @keyframes blinkTextCursor{
+        from{border-right-color: rgba(255,255,255,.75);}
+        to{border-right-color: transparent;}
+    }
+
 }
