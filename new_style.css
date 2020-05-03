@@ -158,6 +158,7 @@ body h1{
 
 
 .btn.btn-danger{
+    cursor: pointer;
     border-radius: 50%;
     left: 50%;
     position: relative;

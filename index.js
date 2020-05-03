@@ -3,7 +3,6 @@ const synth = window.speechSynthesis;
 const recognition = new SpeechRecognition();
 
 const icon = document.querySelector('.btn-danger');
-const infoText = document.querySelector('.press-mic-message');
 let paragraph = document.createElement('p');
 paragraph.id ='typewriter-paragraph';
 let container = document.querySelector('.text-box');
