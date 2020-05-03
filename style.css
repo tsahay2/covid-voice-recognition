@@ -14,7 +14,6 @@ body h1 {
     text-align: center;
     margin-top: 40px;
     color: #000;
-
 }
 
 .container {
@@ -74,10 +73,11 @@ body h1 {
         width: 85vw;
         max-width: 85vw;
     }
+
     .text-box {
         max-height: 55vh;
     }
-
+}
 
     .line-1{
         position: relative;
@@ -105,5 +105,3 @@ body h1 {
         from{border-right-color: rgba(255,255,255,.75);}
         to{border-right-color: transparent;}
     }
-
-}

@@ -2,7 +2,8 @@ window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecogn
 const synth = window.speechSynthesis;
 const recognition = new SpeechRecognition();
 
-const icon = document.querySelector('button.fa.fa-microphone');
+const icon = document.querySelector('.btn-danger');
+const infoText = document.querySelector('.press-mic-message');
 let paragraph = document.createElement('p');
 paragraph.id ='typewriter-paragraph';
 let container = document.querySelector('.text-box');
@@ -10,7 +11,9 @@ container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
 
 icon.addEventListener('click', () => {
-    sound.play();
+    // sound.play();
+    i=0;
+    document.getElementById("typewriter-paragraph").innerHTML = '';
     dictate();
 });
 
@@ -65,7 +68,6 @@ const getTheCasesDistrictWise = (speech) => {
                   var district = state.districtData[i];
                   console.log(speech.split(' ')[8]);
                   if(speech.split(' ')[8] === district.district){
-                      debugger;
                       console.log(district.district);
                       utterThis = new SpeechSynthesisUtterance(`The total number of cases in district ${district.district} is ${district.confirmed}`);
                       synth.speak(utterThis);
@@ -86,7 +88,6 @@ const getTheSummaryCasesDistrictWise = (speech) => {
                     var district = state.districtData[i];
                     console.log(speech.split(' ')[7]);
                     if(speech.split(' ')[7] === district.district){
-                        debugger;
                         console.log(district.district);
                         utterThis = new SpeechSynthesisUtterance(`The summary of cases in district ${district.district} is as follows. The total number of confirmed cases is ${district.confirmed}. The number of active cases among them is ${district.active}. The number of deaths reported in this region is ${district.deceased}, while on the bright side, there are ${district.recovered} recovered patients. Stay safe and wash your hands! Bye!!!!!!`);
                         synth.speak(utterThis);
@@ -132,7 +133,6 @@ const unsupportedText = () => {
 
 var i=0;
 function typeWriter(txt) {
-    debugger;
     if (i < txt.length) {
         document.getElementById("typewriter-paragraph").innerHTML += txt.charAt(i);
         i++;
