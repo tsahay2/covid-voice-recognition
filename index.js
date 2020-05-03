@@ -22,7 +22,8 @@ const dictate = () => {
     recognition.start();
     recognition.onresult = (event) => {
         const speechToText = event.results[0][0].transcript;
-
+        debugger;
+        console.log('TextToSPeech is ',speechToText);
     typeWriter(speechToText);
 
         if (event.results[0].isFinal) {
@@ -53,6 +54,7 @@ const dictate = () => {
 
 const speak = (action) => {
     utterThis = new SpeechSynthesisUtterance(action());
+
     synth.speak(utterThis);
 };
 
