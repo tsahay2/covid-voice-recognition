@@ -2,7 +2,7 @@ window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecogn
 const synth = window.speechSynthesis;
 const recognition = new SpeechRecognition();
 
-const icon = document.querySelector('.btn-danger');
+const icon = document.querySelector('.btn.btn-danger');
 let paragraph = document.createElement('p');
 paragraph.id ='typewriter-paragraph';
 let container = document.querySelector('.text-box');
@@ -18,12 +18,20 @@ icon.addEventListener('click', () => {
 
 
 const dictate = () => {
+    i=0;
+    document.getElementById("typewriter-paragraph").innerHTML = '';
     recognition.start();
+    recognition.onerror = function(event) {
+        console.log(event.error);
+    };
     recognition.onresult = (event) => {
         const speechToText = event.results[0][0].transcript;
-        debugger;
         console.log('TextToSPeech is ',speechToText);
-    typeWriter(speechToText);
+        var speechToTextTransformed = speechToText;
+        console.log("Transformed is ",speechToTextTransformed,' and normal is :',speechToText);
+        speechToTextTransformed = speechToText.charAt(0).toUpperCase() + speechToText.slice(1);
+        typeWriter(speechToTextTransformed);
+
 
         if (event.results[0].isFinal) {
 
@@ -135,8 +143,9 @@ const unsupportedText = () => {
 var i=0;
 function typeWriter(txt) {
     if (i < txt.length) {
+        console.log('Called.');
         document.getElementById("typewriter-paragraph").innerHTML += txt.charAt(i);
         i++;
-        setTimeout(typeWriter(txt), 500);
+        setTimeout(typeWriter(txt), 5000);
     }
 };
