@@ -99,7 +99,7 @@ const getTheSummaryCasesDistrictWise = (speech) => {
                     var district = state.districtData[i];
                     let splitElement = district.district.split(" ")[0];
 
-                    if(speech.split(' ')[7] === splitElement){
+                    if(speech.split(' ')[7].includes(splitElement)){
                         console.log(district.district);
                         utterThis = new SpeechSynthesisUtterance(`The summary of cases in district ${district.district} is as follows. The total number of confirmed cases is ${district.confirmed}. The number of active cases among them is ${district.active}. The number of deaths reported in this region is ${district.deceased}, while on the bright side, there are ${district.recovered} recovered patients. Stay safe and wash your hands! Bye!!!!!!`);
                         synth.speak(utterThis);
