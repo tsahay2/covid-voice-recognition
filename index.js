@@ -9,15 +9,13 @@ let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
 
-function onLoadThis() {
-    icon.addEventListener('click', () => {
+    icon.addEventListener('mousenter', () => {
         debugger;
         // sound.play();
         i = 0;
         document.getElementById("typewriter-paragraph").innerHTML = '';
         dictate();
     });
-}
 
 
 const dictate = () => {
@@ -29,9 +27,8 @@ const dictate = () => {
     };
     recognition.onresult = (event) => {
         const speechToText = event.results[0][0].transcript;
-        console.log('TextToSPeech is ',speechToText);
         var speechToTextTransformed = speechToText;
-        console.log("Transformed is ",speechToTextTransformed,' and normal is :',speechToText);
+        console.log("Transformed user text is ",speechToTextTransformed,' and normal is :',speechToText);
         speechToTextTransformed = speechToText.charAt(0).toUpperCase() + speechToText.slice(1);
         typeWriter(speechToTextTransformed);
 
@@ -78,11 +75,10 @@ const getTheCasesDistrictWise = (speech) => {
           response.map(function (state) {
               for (let i = 0; i < state.districtData.length; i++) {
                   var district = state.districtData[i];
-                  console.log(speech.split(' ')[8]);
                   let splitElement = district.district.split(" ")[0];
                   if(speech.split(' ')[8] === splitElement){
-                      console.log(district.district);
                       utterThis = new SpeechSynthesisUtterance(`The total number of cases in district ${district.district} is ${district.confirmed}`);
+                      console.log(utterThis);
 
                       synth.speak(utterThis);
                   }
@@ -103,8 +99,8 @@ const getTheSummaryCasesDistrictWise = (speech) => {
                     let splitElement = district.district.split(" ")[0];
 
                     if(speech.split(' ')[7].includes(splitElement)){
-                        console.log(district.district);
                         utterThis = new SpeechSynthesisUtterance(`The summary of cases in district ${district.district} is as follows. The total number of confirmed cases is ${district.confirmed}. The number of active cases among them is ${district.active}. The number of deaths reported in this region is ${district.deceased}, while on the bright side, there are ${district.recovered} recovered patients. Stay safe and wash your hands! Bye!!!!!!`);
+                        console.log(utterThis);
                         synth.speak(utterThis);
                     }
                 }
@@ -149,7 +145,6 @@ const unsupportedText = () => {
 var i=0;
 function typeWriter(txt) {
     if (i < txt.length) {
-        console.log('Called.');
         document.getElementById("typewriter-paragraph").innerHTML += txt.charAt(i);
         i++;
         setTimeout(typeWriter(txt), 5000);
