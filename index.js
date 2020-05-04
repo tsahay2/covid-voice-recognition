@@ -24,7 +24,7 @@ const dictate = () => {
     recognition.start();
     document.getElementById('actionMessage').innerText='Recording...';
     recognition.onerror = function(event) {
-        console.log(event.error);
+        window.alert("Permission dede bhai tabhi chalunga.")
     };
     recognition.onresult = (event) => {
         document.getElementById('actionMessage').innerText='Try again, its fun. Please button to record.';
