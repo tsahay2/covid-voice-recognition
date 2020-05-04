@@ -81,6 +81,7 @@ const getTheCasesDistrictWise = (speech) => {
                   if(speech.split(' ')[8] === splitElement){
                       console.log(district.district);
                       utterThis = new SpeechSynthesisUtterance(`The total number of cases in district ${district.district} is ${district.confirmed}`);
+
                       synth.speak(utterThis);
                   }
               }
