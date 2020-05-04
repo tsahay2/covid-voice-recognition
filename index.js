@@ -9,7 +9,7 @@ let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
 
-    icon.addEventListener('mousenter', () => {
+    icon.addEventListener('click', () => {
         debugger;
         // sound.play();
         i = 0;
