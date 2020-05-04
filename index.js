@@ -9,12 +9,15 @@ let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
 
-icon.addEventListener('click', () => {
-    // sound.play();
-    i=0;
-    document.getElementById("typewriter-paragraph").innerHTML = '';
-    dictate();
-});
+function onLoadThis() {
+    icon.addEventListener('click', () => {
+        debugger;
+        // sound.play();
+        i = 0;
+        document.getElementById("typewriter-paragraph").innerHTML = '';
+        dictate();
+    });
+}
 
 
 const dictate = () => {
@@ -76,7 +79,6 @@ const getTheCasesDistrictWise = (speech) => {
               for (let i = 0; i < state.districtData.length; i++) {
                   var district = state.districtData[i];
                   console.log(speech.split(' ')[8]);
-
                   let splitElement = district.district.split(" ")[0];
                   if(speech.split(' ')[8] === splitElement){
                       console.log(district.district);
