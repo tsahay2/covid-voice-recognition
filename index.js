@@ -76,7 +76,9 @@ const getTheCasesDistrictWise = (speech) => {
               for (let i = 0; i < state.districtData.length; i++) {
                   var district = state.districtData[i];
                   console.log(speech.split(' ')[8]);
-                  if(speech.split(' ')[8] === district.district){
+
+                  let splitElement = district.district.split(" ")[0];
+                  if(speech.split(' ')[8] === splitElement){
                       console.log(district.district);
                       utterThis = new SpeechSynthesisUtterance(`The total number of cases in district ${district.district} is ${district.confirmed}`);
                       synth.speak(utterThis);
@@ -95,8 +97,9 @@ const getTheSummaryCasesDistrictWise = (speech) => {
             response.map(function (state) {
                 for (let i = 0; i < state.districtData.length; i++) {
                     var district = state.districtData[i];
-                    console.log(speech.split(' ')[7]);
-                    if(speech.split(' ')[7] === district.district){
+                    let splitElement = district.district.split(" ")[0];
+
+                    if(speech.split(' ')[7] === splitElement){
                         console.log(district.district);
                         utterThis = new SpeechSynthesisUtterance(`The summary of cases in district ${district.district} is as follows. The total number of confirmed cases is ${district.confirmed}. The number of active cases among them is ${district.active}. The number of deaths reported in this region is ${district.deceased}, while on the bright side, there are ${district.recovered} recovered patients. Stay safe and wash your hands! Bye!!!!!!`);
                         synth.speak(utterThis);
