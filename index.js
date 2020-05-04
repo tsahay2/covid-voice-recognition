@@ -22,10 +22,13 @@ const dictate = () => {
     i=0;
     document.getElementById("typewriter-paragraph").innerHTML = '';
     recognition.start();
+    document.getElementById('actionMessage').innerText='Recording...';
     recognition.onerror = function(event) {
         console.log(event.error);
     };
     recognition.onresult = (event) => {
+        document.getElementById('actionMessage').innerText='Try again, its fun. Please button to record.';
+
         const speechToText = event.results[0][0].transcript;
         var speechToTextTransformed = speechToText;
         console.log("Transformed user text is ",speechToTextTransformed,' and normal is :',speechToText);
