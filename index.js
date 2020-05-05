@@ -1,7 +1,7 @@
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const synth = window.speechSynthesis;
 const recognition = new SpeechRecognition();
-
+readJSON('jokes.json');
 const icon = document.querySelector('.btn.btn-danger');
 let paragraph = document.createElement('p');
 paragraph.id ='typewriter-paragraph';
@@ -172,4 +172,25 @@ function getRecoveredPercentage(response){
     let recoveredPercentage = Math.round(parseInt(response.data.total_cases)/parseInt(response.data.recovery_cases));
     console.log("Recovered % is ",recoveredPercentage);
     return recoveredPercentage;
+}
+
+
+function readJSON(path) {
+    debugger;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', path, true);
+    xhr.responseType = 'blob';
+    xhr.onload = function(e) {
+        if (this.status == 200) {
+            var file = new File([this.response], 'temp');
+            var fileReader = new FileReader();
+            fileReader.addEventListener('load', function(){
+                //do stuff with fileReader.result
+
+                console.log(fileReader.result);
+            });
+            fileReader.readAsText(file);
+        }
+    }
+    xhr.send();
 }
