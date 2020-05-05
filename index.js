@@ -27,8 +27,6 @@ const dictate = () => {
         window.alert("Permission dede bhai tabhi chalunga.")
     };
     recognition.onresult = (event) => {
-        document.getElementById('actionMessage').innerText='Try again, its fun. Please button to record.';
-
         const speechToText = event.results[0][0].transcript;
         var speechToTextTransformed = speechToText;
         console.log("Transformed user text is ",speechToTextTransformed,' and normal is :',speechToText);
@@ -55,9 +53,14 @@ const dictate = () => {
             else if(speechToText.includes('give me the summary of cases in')){
                 getTheSummaryCasesDistrictWise(speechToText);
             }
+            else if(speechToText.includes('give me the general statistics for the world')){
+                debugger;
+                getGeneralWorldStatistics(speechToText);
+            }
             else {
                 unsupportedText();
             }
+            document.getElementById('actionMessage').innerText='Try again, its fun. Press the button to record.';
         }
     }
 };
@@ -66,6 +69,17 @@ const speak = (action) => {
     utterThis = new SpeechSynthesisUtterance(action());
 
     synth.speak(utterThis);
+};
+
+const getGeneralWorldStatistics = (speech) => {
+    fetch('https://corona-virus-stats.herokuapp.com/api/v1/cases/general-stats')
+        .then(function (response) {
+            return response.json();
+        }).then(function (response) {
+        utterThis = new SpeechSynthesisUtterance(`The total number of active cases in the entire bloody world is  ${response.data.total_cases}. I know thats a lot, but the positive news is that the total number of recovered cases is ${response.data.recovery_cases}.That is a whopping rate of over ${getRecoveredPercentage(response)} percent. Yayayayayayayayayaya`);
+            synth.speak(utterThis);
+
+        })
 };
 
 
@@ -138,8 +152,8 @@ const getTheWeather = (speech) => {
 
 };
 const unsupportedText = () => {
-  utterCrapList = ["Sorry I don't understand what you are saying. Please try again","Kya bol rha hai be","Could you please read the options carefully before speaking","I won't tell you because I don't know that","What the hell did you just say?"];
-    var randomNumber = Math.floor((Math.random()*5)+1);
+  utterCrapList = ["Sorry I don't understand what you are saying. Please try again","Could you please read the options carefully before speaking","I won't tell you because I don't know that","What the hell did you just say?"];
+    var randomNumber = Math.floor((Math.random()*4)+1);
      utterThis = new SpeechSynthesisUtterance(utterCrapList[randomNumber]);
     synth.speak(utterThis);
 
@@ -153,3 +167,9 @@ function typeWriter(txt) {
         setTimeout(typeWriter(txt), 5000);
     }
 };
+
+function getRecoveredPercentage(response){
+    let recoveredPercentage = Math.round(parseInt(response.data.total_cases)/parseInt(response.data.recovery_cases));
+    console.log("Recovered % is ",recoveredPercentage);
+    return recoveredPercentage;
+}
