@@ -1,21 +1,23 @@
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const synth = window.speechSynthesis;
 const recognition = new SpeechRecognition();
-readJSON('jokes.json');
+// readJSON('jokes.json');
 const icon = document.querySelector('.btn.btn-danger');
 let paragraph = document.createElement('p');
 paragraph.id ='typewriter-paragraph';
 let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
+// eruda();
 
-    /*icon.addEventListener('click', () => {
-        debugger;
+/*var eruda = function () { var script = document.createElement('script'); script.src="//cdn.jsdelivr.net/npm/eruda"; document.body.appendChild(script); script.onload = function () { eruda.init() } };*/
+
+    icon.addEventListener('click', () => {
         // sound.play();
         i = 0;
         document.getElementById("typewriter-paragraph").innerHTML = '';
         dictate();
-    });*/
+    });
 
 
 const dictate = () => {
@@ -24,7 +26,9 @@ const dictate = () => {
     recognition.start();
     document.getElementById('actionMessage').innerText='Recording...';
     recognition.onerror = function(event) {
-        window.alert("Permission dede bhai tabhi chalunga.")
+        // window.alert("Permission dede bhai tabhi chalunga.");
+        document.getElementById('actionMessage').innerText='Please give me permission to listen to you!';
+
     };
     recognition.onresult = (event) => {
         const speechToText = event.results[0][0].transcript;
