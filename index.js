@@ -9,13 +9,13 @@ let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
 
-    icon.addEventListener('click', () => {
+    /*icon.addEventListener('click', () => {
         debugger;
         // sound.play();
         i = 0;
         document.getElementById("typewriter-paragraph").innerHTML = '';
         dictate();
-    });
+    });*/
 
 
 const dictate = () => {
