@@ -11,10 +11,10 @@ const sound = document.querySelector('.sound');
 // eruda();
 
 /*var eruda = function () { var script = document.createElement('script'); script.src="//cdn.jsdelivr.net/npm/eruda"; document.body.appendChild(script); script.onload = function () { eruda.init() } };*/
-   /* icon.addEventListener('click', () => {
+    icon.addEventListener('click', () => {
         // sound.play();
         dictate();
-    });*/
+    });
 
 
 const dictate = () => {
