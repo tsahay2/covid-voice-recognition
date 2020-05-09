@@ -11,17 +11,14 @@ const sound = document.querySelector('.sound');
 // eruda();
 
 /*var eruda = function () { var script = document.createElement('script'); script.src="//cdn.jsdelivr.net/npm/eruda"; document.body.appendChild(script); script.onload = function () { eruda.init() } };*/
-
-    icon.addEventListener('click', () => {
+   /* icon.addEventListener('click', () => {
         // sound.play();
-        i = 0;
-        document.getElementById("typewriter-paragraph").innerHTML = '';
         dictate();
-    });
+    });*/
 
 
 const dictate = () => {
-    i=0;
+    window.alert("Dictate was clicked!");
     document.getElementById("typewriter-paragraph").innerHTML = '';
     recognition.start();
     document.getElementById('actionMessage').innerText='Recording...';
@@ -35,7 +32,8 @@ const dictate = () => {
         var speechToTextTransformed = speechToText;
         console.log("Transformed user text is ",speechToTextTransformed,' and normal is :',speechToText);
         speechToTextTransformed = speechToText.charAt(0).toUpperCase() + speechToText.slice(1);
-        typeWriter(speechToTextTransformed);
+        // typeWriter(speechToTextTransformed);
+        document.getElementById("typewriter-paragraph").innerHTML = speechToTextTransformed;
 
 
         if (event.results[0].isFinal) {
@@ -71,7 +69,6 @@ const dictate = () => {
 
 const speak = (action) => {
     utterThis = new SpeechSynthesisUtterance(action());
-
     synth.speak(utterThis);
 };
 
@@ -81,7 +78,8 @@ const getGeneralWorldStatistics = (speech) => {
             return response.json();
         }).then(function (response) {
         utterThis = new SpeechSynthesisUtterance(`The total number of active cases in the entire bloody world is  ${response.data.total_cases}. I know thats a lot, but the positive news is that the total number of recovered cases is ${response.data.recovery_cases}.That is a whopping rate of over ${getRecoveredPercentage(response)} percent. Yayayayayayayayayaya`);
-            synth.speak(utterThis);
+        console.log(utterThis);
+        synth.speak(utterThis);
 
         })
 };
@@ -159,6 +157,7 @@ const unsupportedText = () => {
   utterCrapList = ["Sorry I don't understand what you are saying. Please try again","Could you please read the options carefully before speaking","I won't tell you because I don't know that","What the hell did you just say?"];
     var randomNumber = Math.floor((Math.random()*4)+1);
      utterThis = new SpeechSynthesisUtterance(utterCrapList[randomNumber]);
+    console.log(utterThis);
     synth.speak(utterThis);
 
 };
@@ -195,6 +194,6 @@ function readJSON(path) {
             });
             fileReader.readAsText(file);
         }
-    }
+    };
     xhr.send();
 }
