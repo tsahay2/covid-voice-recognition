@@ -18,7 +18,6 @@ const sound = document.querySelector('.sound');
 
 
 const dictate = () => {
-    window.alert("Dictate was clicked!");
     document.getElementById("typewriter-paragraph").innerHTML = '';
     recognition.start();
     document.getElementById('actionMessage').innerText='Recording...';
